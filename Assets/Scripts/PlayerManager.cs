@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     public DiceManager dm;
     public ScoreManager sm;
+    public GameObject dieBody;
+    public List<DiceFace> faces;
 
     void Start()
     {
@@ -16,10 +18,6 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            int pointsScored = dm.RollAllDice();
-            sm.UpdateScore(pointsScored);
-        }
+        
     }
 }

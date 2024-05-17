@@ -10,8 +10,7 @@ public class DiceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Printing dieFaces: " + dieFaces.ToString());
-        SetupManager();
+
     }
 
     // Update is called once per frame
@@ -22,18 +21,7 @@ public class DiceManager : MonoBehaviour
 
     public void SetupManager()
     {
-        for (int i = 0; i < managedDice.Count; i++)
-        {
-            dieFaces.Add(new List<int>());
-        }
 
-        for (int currentDie = 0; currentDie < managedDice.Count; currentDie++)
-        {
-            for (int currentFace = 0; currentFace < managedDice[currentDie].numFaces; currentFace++)
-            {
-                dieFaces[currentDie].Add(managedDice[currentDie].faces[currentFace]);
-            }
-        }
     }
 
     public void ResetAllDice()
@@ -50,9 +38,8 @@ public class DiceManager : MonoBehaviour
 
         for (int i = 0; i < managedDice.Count; i++)
         {
-            int result = managedDice[i].RollDie();
-            total += result;
-            Debug.Log("Result for die " + i + " is: " + result);
+            // Throw dice
+            // Outside of the loop, we need to wait to land, grab face up guys, then call their functions
         }
 
         return total;
