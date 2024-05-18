@@ -5,26 +5,16 @@ using UnityEngine;
 public abstract class DiceFace : MonoBehaviour
 {
     [SerializeField]
-    private GameObject faceImage;
+    protected GameObject faceImage;
+    protected ScoreManager scoreManager;
+    protected int priority = 0;
 
-    public virtual int RolledNumber()
+    public virtual void SetupFace()
     {
-        Debug.Log("No RolledNumber() function implemented for " + this.GetType().ToString());
-        return 0;
-    }
-
-    public virtual float RolledMultiplier()
-    {
-        Debug.Log("No RolledMultiplier() function implemented for " + this.GetType().ToString());
-        return 0;
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     public virtual void OnRoll()
-    {
-        Debug.Log("No OnRoll() function implemented for " + this.GetType().ToString());
-    }
-
-    public virtual void OnRoll(ScoreManager sm)
     {
         Debug.Log("No OnRoll() function implemented for " + this.GetType().ToString());
     }

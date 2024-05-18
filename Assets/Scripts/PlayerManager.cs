@@ -7,12 +7,11 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     public DiceManager dm;
     public ScoreManager sm;
-    public GameObject dieBody;
-    public List<DiceFace> faces;
 
     void Start()
     {
-        
+        dm.RollDice(new Vector3(-5, 5, -7));
+        Debug.Log("Tossing Dice");
     }
 
     // Update is called once per frame

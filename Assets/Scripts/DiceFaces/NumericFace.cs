@@ -6,15 +6,28 @@ public class NumericFace : DiceFace
 {
     // Start is called before the first frame update
     [SerializeField]
-    private int faceNumber = 1;
+    private int baseFaceNumber = 1;
+    public int currentFaceNumber;
 
-    public override void OnRoll(ScoreManager sm)
+    public override void SetupFace()
     {
-        sm.UpdateScore(RolledNumber());
+        base.SetupFace();
+        currentFaceNumber = baseFaceNumber;
     }
 
-    public override int RolledNumber()
+    public override void OnRoll()
     {
-        return faceNumber;
+        scoreManager.UpdateScore(currentFaceNumber);
+        Debug.Log("Result for me is " + currentFaceNumber);
+    }
+
+    public int CheckMe()
+    {
+        return currentFaceNumber;
+    }
+
+    public void ApplyMultiplier(float multiplier)
+    {
+        currentFaceNumber = Mathf.RoundToInt(currentFaceNumber * multiplier);
     }
 }

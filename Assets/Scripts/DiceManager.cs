@@ -10,7 +10,7 @@ public class DiceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SetupManager();
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class DiceManager : MonoBehaviour
 
     public void SetupManager()
     {
-
+        ResetAllDice();
     }
 
     public void ResetAllDice()
@@ -32,16 +32,42 @@ public class DiceManager : MonoBehaviour
         }
     }
 
-    public int RollAllDice()
+    public void RollDice(Vector3 throwForce)
     {
-        int total = 0;
-
-        for (int i = 0; i < managedDice.Count; i++)
+        foreach (BaseDie die in managedDice)
         {
-            // Throw dice
-            // Outside of the loop, we need to wait to land, grab face up guys, then call their functions
+            // Roll() adds force and torque from a given starting position
+            Debug.Log("Rolling " + die.gameObject.name + " with force equal to " + throwForce.ToString());
+            die.RollDie(throwForce + new Vector3(Random.Range(0, 5), Random.Range(0,5), Random.Range(0,5)));
         }
 
-        return total;
+        //StartCoroutine(CheckIfDiceAreMoving());
     }
+
+    /*
+    IEnumerator CheckIfDiceAreMoving()
+    {
+        bool anyDieIsMoving = false;
+
+        while (!anyDieIsMoving)
+        {
+            anyDieIsMoving = false;
+            foreach (BaseDie die in managedDice)
+            {
+                Rigidbody dieRigidbody = die.rigidbody;
+                if (!die.isRolling)
+                {
+                    anyDieIsMoving = true;
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+        }
+
+        foreach (BaseDie die in managedDice)
+        {
+            // Roll() adds force and torque from a given starting position
+            die.currentFace.OnRoll();
+        }
+    }
+    */
 }
