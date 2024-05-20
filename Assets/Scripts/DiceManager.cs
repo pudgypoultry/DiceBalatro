@@ -38,7 +38,7 @@ public class DiceManager : MonoBehaviour
         {
             // Roll() adds force and torque from a given starting position
             Debug.Log("Rolling " + die.gameObject.name + " with force equal to " + throwForce.ToString());
-            die.RollDie(throwForce + new Vector3(Random.Range(0, 5), Random.Range(0,5), Random.Range(0,5)));
+            die.RollDie(throwForce + new Vector3(Random.Range(0, 5), Random.Range(0, 5), Random.Range(0, 5)));
         }
 
         //StartCoroutine(CheckIfDiceAreMoving());

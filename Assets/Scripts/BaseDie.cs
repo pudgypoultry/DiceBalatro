@@ -51,15 +51,15 @@ public class BaseDie : MonoBehaviour
 
     public virtual DiceFace FindFaceupFace()
     {
-        float highestFace = float.MaxValue;
+        float highestFace = float.MinValue;
         int highestFaceIndex = 0;
         int count = 0;
         // -Z is facing upward. Don't ask, it makes sense to me.
         foreach (DiceFace face in faces)
         {
-            if (face.transform.position.z <= highestFace)
+            if (face.transform.position.y >= highestFace)
             {
-                highestFace = face.transform.position.z;
+                highestFace = face.transform.position.y;
                 highestFaceIndex = count;
             }
             count++;
