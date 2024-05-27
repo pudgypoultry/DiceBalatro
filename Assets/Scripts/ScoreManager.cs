@@ -26,4 +26,9 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Hi I'm the score manager and " + points + " is my favorite score in the galaxy");
         score += points;
     }
+
+    public void MultiplyScore(float multiplier)
+    {
+        score = Mathf.FloorToInt(score * multiplier);
+    }
 }

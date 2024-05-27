@@ -10,6 +10,7 @@ public class DiceManager : MonoBehaviour
     public delegate void OnRollDelegate();
     BaseDie.OnRollDelegate rollToQueue;
     List<BaseDie.OnRollDelegate> queueOfResults = new List<BaseDie.OnRollDelegate>();
+    private int maxPriority = 6;
 
     // Start is called before the first frame update
     void Start()
@@ -74,16 +75,24 @@ public class DiceManager : MonoBehaviour
 
     public void CollectResults()
     {
-        foreach (BaseDie die in managedDice)
+        for (int i = 0; i < maxPriority; i++)
         {
-            rollToQueue = die.QueueMyRoll();
-            Debug.Log("Size of queue: " + queueOfResults.Count);
-            queueOfResults.Add(rollToQueue);
+            foreach (BaseDie die in managedDice)
+            {
+                rollToQueue = die.QueueMyRoll();
+                Debug.Log("Size of queue: " + queueOfResults.Count);
+                if (die.currentFace.priority == i)
+                {
+                    queueOfResults.Add(rollToQueue);
+                }
+            }
         }
+
     }
 
     public void PerformResults()
     {
+
         foreach (BaseDie.OnRollDelegate result in queueOfResults)
         {
             result();
@@ -91,4 +100,6 @@ public class DiceManager : MonoBehaviour
 
         queueOfResults.Clear();
     }
+
+
 }

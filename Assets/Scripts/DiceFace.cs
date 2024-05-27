@@ -15,7 +15,7 @@ public abstract class DiceFace : MonoBehaviour
     [SerializeField]
     protected GameObject faceImage;
     protected ScoreManager scoreManager;
-    protected int priority = 0;
+    public int priority = 0;
     public FaceType faceType;
 
     protected void Start()
