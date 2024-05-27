@@ -9,6 +9,7 @@ public class NumericFace : DiceFace
     private int baseFaceNumber = 1;
     public int currentFaceNumber;
 
+
     public override void SetupFace()
     {
         base.SetupFace();
@@ -18,12 +19,12 @@ public class NumericFace : DiceFace
     public override void OnRoll()
     {
         scoreManager.UpdateScore(currentFaceNumber);
-        Debug.Log("Result for me is " + currentFaceNumber);
+        // Debug.Log("Result for me is " + currentFaceNumber);
     }
 
-    public int CheckMe()
+    public override void CheckMe()
     {
-        return currentFaceNumber;
+        Debug.Log(currentFaceNumber);
     }
 
     public void ApplyMultiplier(float multiplier)

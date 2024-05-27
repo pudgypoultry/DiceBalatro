@@ -11,6 +11,8 @@ public class BaseDie : MonoBehaviour
     public bool isRolling = false;
     public DiceFace currentFace;
     public Rigidbody rigidbody;
+    public delegate void OnRollDelegate();
+    OnRollDelegate rollToQueue;
 
 
     // Start is called before the first frame update
@@ -23,6 +25,11 @@ public class BaseDie : MonoBehaviour
         {
             face.SetupFace();
         }
+    }
+    public OnRollDelegate QueueMyRoll()
+    {
+        rollToQueue = currentFace.OnRoll;
+        return rollToQueue;
     }
 
     public virtual void RollDie(Vector3 throwForce)
@@ -46,7 +53,7 @@ public class BaseDie : MonoBehaviour
         isRolling = false;
 
         // Testing
-        currentFace.OnRoll();
+        // currentFace.OnRoll();
     }
 
     public virtual DiceFace FindFaceupFace()

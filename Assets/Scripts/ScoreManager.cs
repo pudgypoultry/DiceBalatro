@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateScore(int points)
     {
+        Debug.Log("Hi I'm the score manager and " + points + " is my favorite score in the galaxy");
         score += points;
     }
 }

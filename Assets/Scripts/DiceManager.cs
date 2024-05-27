@@ -6,6 +6,10 @@ public class DiceManager : MonoBehaviour
 {
     public List<BaseDie> managedDice;
     public List<List<int>> dieFaces = new List<List<int>>();
+    public bool dieRolling = false;
+    public delegate void OnRollDelegate();
+    BaseDie.OnRollDelegate rollToQueue;
+    List<BaseDie.OnRollDelegate> queueOfResults = new List<BaseDie.OnRollDelegate>();
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +20,18 @@ public class DiceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dieRolling)
+        {
+            bool stillGoin = CheckIfStillRolling();
+
+            if (!stillGoin)
+            {
+                CollectResults();
+                PerformResults();
+                dieRolling = false;
+            }
+        }
+
 
     }
 
@@ -34,40 +50,45 @@ public class DiceManager : MonoBehaviour
 
     public void RollDice(Vector3 throwForce)
     {
+        dieRolling = true;
         foreach (BaseDie die in managedDice)
         {
             // Roll() adds force and torque from a given starting position
             Debug.Log("Rolling " + die.gameObject.name + " with force equal to " + throwForce.ToString());
             die.RollDie(throwForce + new Vector3(Random.Range(0, 5), Random.Range(0, 5), Random.Range(0, 5)));
         }
-
-        //StartCoroutine(CheckIfDiceAreMoving());
     }
 
-    /*
-    IEnumerator CheckIfDiceAreMoving()
+    public bool CheckIfStillRolling()
     {
-        bool anyDieIsMoving = false;
-
-        while (!anyDieIsMoving)
+        foreach (BaseDie die in managedDice)
         {
-            anyDieIsMoving = false;
-            foreach (BaseDie die in managedDice)
+            if (die.isRolling)
             {
-                Rigidbody dieRigidbody = die.rigidbody;
-                if (!die.isRolling)
-                {
-                    anyDieIsMoving = true;
-                    yield return new WaitForSeconds(0.1f);
-                }
+                return true;
             }
         }
 
+        return false;
+    }
+
+    public void CollectResults()
+    {
         foreach (BaseDie die in managedDice)
         {
-            // Roll() adds force and torque from a given starting position
-            die.currentFace.OnRoll();
+            rollToQueue = die.QueueMyRoll();
+            Debug.Log("Size of queue: " + queueOfResults.Count);
+            queueOfResults.Add(rollToQueue);
         }
     }
-    */
+
+    public void PerformResults()
+    {
+        foreach (BaseDie.OnRollDelegate result in queueOfResults)
+        {
+            result();
+        }
+
+        queueOfResults.Clear();
+    }
 }

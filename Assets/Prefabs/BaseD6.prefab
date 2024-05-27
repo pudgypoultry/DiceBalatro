@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 2356568969140274518}
+  faceType: 1
   baseFaceNumber: 2
   currentFaceNumber: 0
 --- !u!1 &2356568967900203278
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 2356568967576371190}
+  faceType: 1
   baseFaceNumber: 6
   currentFaceNumber: 0
 --- !u!1 &2356568967961684561
@@ -226,6 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 2356568968903329977}
+  faceType: 1
   baseFaceNumber: 3
   currentFaceNumber: 0
 --- !u!1 &2356568968089469399
@@ -819,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 2356568968089469399}
+  faceType: 1
   baseFaceNumber: 1
   currentFaceNumber: 0
 --- !u!1 &2356568969140274518
@@ -951,6 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 2356568968096677646}
+  faceType: 1
   baseFaceNumber: 4
   currentFaceNumber: 0
 --- !u!1 &2356568969296767213
@@ -999,5 +1004,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 2356568968278245732}
+  faceType: 1
   baseFaceNumber: 5
   currentFaceNumber: 0
